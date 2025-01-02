@@ -5,7 +5,10 @@ import "./App.css";
 function App() {
     const [count, setCount] = useState(0);
 
-    useEffect(() => {}, [window.electron.subscribeStatistics((stats) => console.log(stats))]);
+    useEffect(() => {
+        const unsub = window.electron.subscribeStatistics((stats) => console.log(stats));
+        return unsub;
+    }, []);
     return (
         <>
             <div>
